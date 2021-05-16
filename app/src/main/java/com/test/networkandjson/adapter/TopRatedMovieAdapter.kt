@@ -1,4 +1,5 @@
 package com.test.networkandjson.adapter
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,20 +13,20 @@ import com.bumptech.glide.Glide
 import com.test.networkandjson.R
 import com.test.networkandjson.movie.Movie
 
-class NowPlayingAdapter (private val layoutManager: GridLayoutManager? = null) : ListAdapter<Movie,NowPlayingAdapter.ViewHolder>(MovieDiffUtilCallback()) {
+class TopRatedMovieAdapter (private val layoutManager: GridLayoutManager? = null) : ListAdapter<Movie, TopRatedMovieAdapter.ViewHolder>(MovieDiffUtilCallback()) {
     companion object {
         const val URL_POSTER = "https://image.tmdb.org/t/p/w500"
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tvName = itemView.findViewById<TextView>(R.id.itemTitle)
-        val tvViewer = itemView.findViewById<TextView>(R.id.itemViewer)
+        val tvRated = itemView.findViewById<TextView>(R.id.itemRated)
         val tvReleaseDay = itemView.findViewById<TextView>(R.id.itemReleaseDay)
         val imgMovie = itemView.findViewById<ImageView>(R.id.itemImage)
 
         fun bind(item: Movie) {
             tvName.text = item.originalTitle
-            tvViewer.text =  "Viewers: "+item.popularity.toString()
+            tvRated.text =  "Rate: "+item.voteAverage
             tvReleaseDay.text = "Release Day: "+item.releaseDate
             Glide.with(itemView.context)
                 .load(URL_POSTER+item.posterPath)
@@ -39,12 +40,12 @@ class NowPlayingAdapter (private val layoutManager: GridLayoutManager? = null) :
         }
 
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-           return oldItem == newItem
+            return oldItem == newItem
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_movie,parent,false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_top_rated_movie,parent,false)
         return ViewHolder(view)
     }
 
