@@ -6,20 +6,15 @@
 
     </data>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.NowPlayingFragment">
 
-
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/nowplayingrec"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".fragment.NowPlayingFragment">
+            android:layout_height="match_parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/nowplayingrec"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
-
-
-
+    </FrameLayout>
 </layout>

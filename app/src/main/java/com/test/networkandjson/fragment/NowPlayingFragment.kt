@@ -1,14 +1,13 @@
 package com.test.networkandjson.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
 import com.test.networkandjson.MainViewModel
 import com.test.networkandjson.R
 import com.test.networkandjson.adapter.NowPlayingAdapter
@@ -19,10 +18,11 @@ import kotlinx.android.synthetic.main.fragment_now_playing.*
 class NowPlayingFragment : Fragment() {
 
     lateinit var mainViewModel: MainViewModel
-//    lateinit var binding: FragmentNowPlayingBinding
+    lateinit var binding: FragmentNowPlayingBinding
     var layoutManager: GridLayoutManager? = null
     lateinit var recycleView: RecyclerView
     lateinit var fav: MenuItem
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,14 +32,10 @@ class NowPlayingFragment : Fragment() {
 
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        fav = menu.add("grid");
-//      fav.setIcon(R.drawable.icongrid);
-//        fav.setShowAsAction (MenuItem.SHOW_AS_ACTION_ALWAYS)
-//        fav = menu.add("list");
-//        fav.setIcon(R.drawable.listicon);
+
         val newId = 100
         fav  = menu.add(0, newId, 0, "Grid")
-      fav.setIcon(R.drawable.icongrid);
+        fav.setIcon(R.drawable.icongrid);
         fav.setShowAsAction (MenuItem.SHOW_AS_ACTION_ALWAYS)
 
 
@@ -84,20 +80,12 @@ class NowPlayingFragment : Fragment() {
         recycleView.adapter = NowPlayingAdapter(layoutManager as GridLayoutManager)
         val adapter = NowPlayingAdapter();
         recycleView.adapter = adapter
-        Log.e("aaa","sss")
-
-
 
         mainViewModel.getNowPlaying().observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
-
-
-
         return v
     }
 
 
-
 }
-
